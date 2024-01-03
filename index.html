@@ -6,17 +6,19 @@
   <title>Namaste React</title>
 </head>
 <body>
+  <div id="root"></div>
+
+
    
-  <div id="root">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-  </div>
-
-  
   <script>
-    const element = document.createElement("h1")
-    element.innerHTML = "hello world from javascript!"
+    const heading = React.createElement("h1", {}, "hello world from react!");
 
-    document.getElementById("root").appendChild(element)
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+
+    root.render(heading)
   </script>
 </body>
 </html>
