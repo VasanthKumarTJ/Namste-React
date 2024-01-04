@@ -1,0 +1,18 @@
+{
+  "name": "episode-02---igniting-our-app",
+  "version": "1.0.0",
+  "description": "learning react",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "react"
+  ],
+  "git repository": "https://github.com/VasanthKumarTJ/Namste-React.git",
+  "author": "Vasanth Kumar",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  }
+}
