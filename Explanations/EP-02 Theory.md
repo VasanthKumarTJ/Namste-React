@@ -1,7 +1,7 @@
 # Steps  🚀
   - to dwnld parcel package
     ```
-    npm i parcel
+    npm i -D parcel
     ```
   - to dwnld react and react-dom
     ```
