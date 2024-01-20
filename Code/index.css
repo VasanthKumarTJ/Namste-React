@@ -28,7 +28,6 @@
  display: flex;
  flex-wrap: wrap;
  gap: 50px;
- margin-left: 10em;
 }
 .restaurant-logo{
   width: 100%;
