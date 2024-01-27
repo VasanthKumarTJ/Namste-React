@@ -1,12 +1,13 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import { RESTAURANTLIST_API } from "../utils/constants";
 
 const Body = () => {
   //local State variable - Super Powerful
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
 
   //Whenever statevariable updates or changes react triggers reconsiliatin (re-render or refreshes the component)
   const [searchText, setSearchText] = useState("");
@@ -16,9 +17,7 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.818456&lng=79.6946586&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(RESTAURANTLIST_API);
 
     const json = await data.json();
     console.log(json);
@@ -71,7 +70,7 @@ const Body = () => {
           onClick={() => {
             const topRatedRestaurants = listOfRestaurants.filter(
               (restaurant) => {
-                return restaurant.info.avgRating > 4;
+                return restaurant?.info?.avgRating > 4;
               }
             );
             setFilteredRestaurants(topRatedRestaurants);
@@ -83,10 +82,12 @@ const Body = () => {
 
       <div className="restaurant-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard
-            key={restaurant.info.id}
-            restaurantData={restaurant}
-          />
+          <Link
+            key={restaurant?.info?.id}
+            to={"/restaurant/" + restaurant?.info?.id}
+          >
+            <RestaurantCard restaurantData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
