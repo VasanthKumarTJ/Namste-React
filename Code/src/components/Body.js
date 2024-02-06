@@ -3,14 +3,15 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { RESTAURANTLIST_API } from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
+
 
 const Body = () => {
-  //local State variable - Super Powerful
+  //whenever state variable updates = reconsiliation
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
-  //Whenever statevariable updates or changes react triggers reconsiliatin (re-render or refreshes the component)
   const [searchText, setSearchText] = useState("");
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchData();
@@ -22,15 +23,17 @@ const Body = () => {
     const json = await data.json();
     console.log(json);
 
+    //Optional Chaining
     setListOfRestaurants(
-      //Optional Chaining
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilteredRestaurants(
-      //Optional Chaining
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  if (onlineStatus === false)
+    return <h1>something went wrong, please check you internet connection</h1>;
 
   //Conditional rendering - (Ternaray Operator (condition ? true : false))
   return listOfRestaurants.length === 0 ? (

@@ -1,24 +1,10 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestauarantMenu";
 
 const RestaurantMenu = () => {
-  const [restaurantInfo, setRestaurantInfo] = useState(null);
-
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
-
-    const json = await data.json();
-    console.log(json.data);
-
-    setRestaurantInfo(json.data);
-  };
+  const restaurantInfo = useRestaurantMenu(resId);
 
   if (!restaurantInfo) return <div> Loading...</div>;
 
@@ -48,4 +34,3 @@ const RestaurantMenu = () => {
 };
 
 export default RestaurantMenu;
-

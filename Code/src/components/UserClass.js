@@ -26,7 +26,7 @@ class UserClass extends React.Component {
   render() {
     const { name } = this.props;
     const { userName } = this.state;
-    console.log("render");
+    console.log("class render");
     
     return (
       <div className="user-container">
