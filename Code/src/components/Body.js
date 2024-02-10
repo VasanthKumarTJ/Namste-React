@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { RESTAURANTLIST_API } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
-
 const Body = () => {
   //whenever state variable updates = reconsiliation
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -40,36 +39,39 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <input
-          type="search"
-          className="search-bar"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-        <button
-          className="search-btn"
-          onClick={() => {
-            //filter the restaurants and update the UI
-            //searchText
-            console.log(searchText);
-            const filteredRestaurants = listOfRestaurants.filter(
-              (restaurant) => {
-                return restaurant.info.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase());
-              }
-            );
-            setFilteredRestaurants(filteredRestaurants);
-          }}
-        >
-          Search
-        </button>
+      <div className="filter flex">
+        <div className="search m-4 p-4">
+          <input
+            type="text"
+            className="border border-solid border-black"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="px-4 py-2 bg-green-100 m-4 rounded-lg"
+            onClick={() => {
+              //filter the restaurants and update the UI
+              //searchText
+              console.log(searchText);
+              const filteredRestaurants = listOfRestaurants.filter(
+                (restaurant) => {
+                  return restaurant.info.name
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase());
+                }
+              );
+              setFilteredRestaurants(filteredRestaurants);
+            }}
+          >
+            Search
+          </button>
+        </div>
 
+        <div className="top-rated m-4 p-4 flex items-center">
         <button
-          className="top-restaurants-btn"
+          className="px-4 py-2 bg-gray-200 rounded-lg"
           onClick={() => {
             const topRatedRestaurants = listOfRestaurants.filter(
               (restaurant) => {
@@ -81,9 +83,10 @@ const Body = () => {
         >
           Top rated
         </button>
+        </div>
       </div>
 
-      <div className="restaurant-container">
+      <div className="restaurant-container flex flex-wrap ml-[8%]">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant?.info?.id}
