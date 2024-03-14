@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestauarantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -7,30 +8,48 @@ const RestaurantMenu = () => {
   const restaurantInfo = useRestaurantMenu(resId);
 
   if (!restaurantInfo) return <div> Loading...</div>;
+  console.log(restaurantInfo);
 
-  const { name, cuisines } = restaurantInfo?.cards[0]?.card?.card?.info;
-
-  const {
-    itemCards,
-  } = restaurantInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
   const {
-    title,
-  } = restaurantInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+    name,
+    cuisines,
+    costForTwoMessage,
+    areaName,
+    locality,
+    city,
+  } = restaurantInfo?.cards[0]?.card?.card?.info;
+
+  // const {
+  //   itemCards,
+  //   title,
+  // } = restaurantInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+
+
+  const categories = restaurantInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    (c) =>
+      c.card?.card?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
   return (
-    <div>
-      <h1>{name}</h1>
-      <h2>{cuisines.join(",")}</h2>
-      <ul>
-        <h2>{title}</h2>
-        {console.log(itemCards)}
-        {itemCards.map((item) => (
-          <li key={item?.card?.info?.id}> {item?.card?.info?.name}</li>
-        ))}
-      </ul>
+    <div className="text-center">
+      <h1 className="font-semibold my-6 text-2xl text-gray-800">{name}</h1>
+      <h2 className=" text-gray-900">
+        {cuisines.join(",")} - {costForTwoMessage}
+      </h2>
+      <p className=" text-sm text-gray-950 ">{areaName}, {locality}, {city}</p>
+      {/* {categories accordians}  */}
+      {categories.map((category) => (
+        // controled component
+        <RestaurantCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+        />
+      ))}
     </div>
   );
 };
 
 export default RestaurantMenu;
+

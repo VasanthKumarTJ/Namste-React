@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOffersLabel } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -12,6 +12,10 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
 
+  const RestaurantCardWithOffers = withOffersLabel(RestaurantCard);
+
+  // console.log("Body rendered", listOfRestaurants);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -24,10 +28,10 @@ const Body = () => {
 
     //Optional Chaining
     setListOfRestaurants(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilteredRestaurants(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
@@ -70,29 +74,34 @@ const Body = () => {
         </div>
 
         <div className="top-rated m-4 p-4 flex items-center">
-        <button
-          className="px-4 py-2 bg-gray-200 rounded-lg"
-          onClick={() => {
-            const topRatedRestaurants = listOfRestaurants.filter(
-              (restaurant) => {
-                return restaurant?.info?.avgRating > 4;
-              }
-            );
-            setFilteredRestaurants(topRatedRestaurants);
-          }}
-        >
-          Top rated
-        </button>
+          <button
+            className="px-4 py-2 bg-gray-200 rounded-lg"
+            onClick={() => {
+              const topRatedRestaurants = listOfRestaurants.filter(
+                (restaurant) => {
+                  return restaurant?.info?.avgRating > 4;
+                }
+              );
+              setFilteredRestaurants(topRatedRestaurants);
+            }}
+          >
+            Top rated
+          </button>
         </div>
       </div>
 
-      <div className="restaurant-container flex flex-wrap ml-[8%]">
+      <div className="restaurant-container flex flex-wrap justify-start w-11/12 mx-auto px-12">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant?.info?.id}
             to={"/restaurant/" + restaurant?.info?.id}
           >
-            <RestaurantCard restaurantData={restaurant} />
+            {/* Terinary operator */}
+            {restaurant.info.aggregatedDiscountInfoV3 ? (
+              <RestaurantCardWithOffers restaurantData={restaurant} />
+            ) : (
+              <RestaurantCard restaurantData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

@@ -14,6 +14,7 @@
   "author": "Vasanth Kumar",
   "license": "ISC",
   "devDependencies": {
+    "@types/react": "^18.2.58",
     "parcel": "^2.10.3",
     "postcss": "^8.4.34",
     "process": "^0.11.10",
