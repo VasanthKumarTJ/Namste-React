@@ -30,9 +30,8 @@ const ItemList = ({ items }) => {
               </h2>
             </div>
 
-            <p className="text-xs text-gray-600">{item.card.info.description}</p>
+            <p className="text-xs text-gray-600 ">{item.card.info.description}</p>
           </div>
-
           <div className="w-3/12 p-4 mx-auto relative">
             {!item.card.info.nextAvailableAtMessage && (
               <div className=" absolute mx-8 top-20 drop-shadow-lg">

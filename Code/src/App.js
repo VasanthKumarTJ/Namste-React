@@ -7,12 +7,13 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
-import Shimmer from "./components/Shimmer";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart.js";
+import ShimmerUI from "./components/Shimmers/ShimmerUI.js";
+import Footer from "./components/Footer.js";
 
-const About = lazy(() => import("./components/About"));
+const Help = lazy(() => import("./components/Help"));
 
 const AppLayout = () => {
   return (
@@ -20,6 +21,7 @@ const AppLayout = () => {
       <div className="app">
         <Header />
         <Outlet />
+        <Footer/>
       </div>
     </Provider>
   );
@@ -37,8 +39,8 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <Suspense fallback={<Shimmer></Shimmer>}>
-            <About />
+          <Suspense fallback={<ShimmerUI/>}>
+            <Help />
           </Suspense>
         ),
       },

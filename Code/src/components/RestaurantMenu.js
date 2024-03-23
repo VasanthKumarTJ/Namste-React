@@ -8,7 +8,7 @@ const RestaurantMenu = () => {
   const restaurantInfo = useRestaurantMenu(resId);
 
   if (!restaurantInfo) return <div> Loading...</div>;
-  // console.log(restaurantInfo);
+  console.log(restaurantInfo);
 
   const {
     name,

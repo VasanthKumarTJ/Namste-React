@@ -1,15 +1,14 @@
-import {useRouteError} from "react-router-dom"
+import { useRouteError } from "react-router-dom";
+import {error} from "../../assets/404.svg"
 
 const Error = () => {
   const err = useRouteError();
-  console.log(err)
+  console.log(err);
+
   return (
-    <div className="error">
-      <h1>OOPS😬!!</h1>
-      <h2>Something went wrong!!!</h2>
-      <h3>{err.status}: {err.statusText}</h3>
+    <div className="bg-gray-600 w-12/12 h-screen error">
+      <img className="w-8/12 mx-auto" src={error}></img>
     </div>
   );
-}
-
+};
 export default Error;

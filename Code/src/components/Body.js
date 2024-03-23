@@ -1,6 +1,6 @@
 import RestaurantCard, { withOffersLabel } from "./RestaurantCard";
 import { useState, useEffect } from "react";
-import Shimmer from "./Shimmer";
+import ShimmerUI from "./Shimmers/ShimmerUI";
 import { Link } from "react-router-dom";
 import { RESTAURANTLIST_API } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -40,7 +40,7 @@ const Body = () => {
 
   //Conditional rendering - (Ternaray Operator (condition ? true : false))
   return listOfRestaurants.length === 0 ? (
-    <Shimmer />
+    <ShimmerUI />
   ) : (
     <div className="body">
       <div className="filter flex">
