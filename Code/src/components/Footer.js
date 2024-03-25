@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { LOGO_URL } from "../utils/constants";
 import logo from "../../assets/logo/logo.png";
 import { FaInstagram, FaTwitter, FaGithub, FaLinkedin} from "react-icons/fa";
 
@@ -75,18 +74,18 @@ const Footer = () => {
         <div className="lg:w-2/12 w-4/12 md:w-2/12 ">
           <span className={titleCss}>We deliver to:</span>
           <ul>
-            <li className={LiCss}>Bangalore</li>
-            <li className={LiCss}>Pune</li>
-            <li className={LiCss}>Gurgaon</li>
-            <li className={LiCss}>Hyderabad</li>
-            <li className={LiCss}>Delhi</li>
-            <li className={LiCss}>Mumbai</li>
+            <li className={LiCss}>Kanchipuram</li>
+            <li className={LiCss}>Chennai</li>
+            <li className={LiCss}>Vellore</li>
+            <li className={LiCss}>Walajabad</li>
+            <li className={LiCss}>Enathur</li>
+            <li className={LiCss}>Tambram</li>
           </ul>
         </div>
       </div>
       <div className="bg-zinc-800 text-white text-center py-5">
         <span className="tracking-wide">
-          © 2023 All Rights Reserved Haritha & Vasanth
+          © 2024 All Rights Reserved Haritha & Vasanth
         </span>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useSelector } from "react-redux";
 import { selectCartQuantity } from "../store/selectCartQuantity";
-import { FaHeadset, FaShoppingCart } from "react-icons/fa";
+import { FaHeadset, FaShoppingCart, } from "react-icons/fa";
 
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login");

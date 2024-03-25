@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../store/cartSlice.js";
 import CartSummary from "../Cart/CartSummary.js";
 import CartItem from "./CartItem.js";
-import ShimmerCart from "../Shimmers/ShimmerCart.js";
 import cartImg from "../../../assets/cart.svg";
 import { Link } from "react-router-dom";
 
@@ -39,7 +38,7 @@ const Cart = () => {
   ) : (
     // <div className=" flex justify-between w-10/12 mx-auto my-10">
       <div className=" text-center flex w-10/12 mx-auto my-10 gap-8">
-        <div className=" w-9/12 ">
+        <div className=" w-9/12">
           <div className="text-start flex justify-between border-b-[1px] border-gray-300 w-10/12 ">
             <div>
               <h1 className="text-2xl font-semibold">Order Overview</h1>

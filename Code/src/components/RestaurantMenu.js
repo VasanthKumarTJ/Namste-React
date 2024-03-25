@@ -1,34 +1,30 @@
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestauarantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import ShimmerMenu from "./Shimmers/ShimmerMenu";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const restaurantInfo = useRestaurantMenu(resId);
 
-  if (!restaurantInfo) return <div> Loading...</div>;
-  console.log(restaurantInfo);
+  if (!restaurantInfo) return <div> <ShimmerMenu/> </div>;
+  // console.log(restaurantInfo);
 
-  const {
-    name,
-    cuisines,
-    costForTwoMessage,
-    areaName,
-    locality,
-    city,
-  } = restaurantInfo?.cards[0]?.card?.card?.info;
+  const { name, cuisines, costForTwoMessage, areaName, locality, city } =
+    restaurantInfo?.cards[0]?.card?.card?.info;
 
   // const {
   //   itemCards,
   //   title,
   // } = restaurantInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.cards;
 
-  const categories = restaurantInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
-    (c) =>
-      c.card?.card?.["@type"] ===
-      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-  );
+  const categories =
+    restaurantInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
   // console.log(categories);
 
@@ -38,7 +34,9 @@ const RestaurantMenu = () => {
       <h2 className=" text-gray-900 text-xl">
         {cuisines.join(",")} - {costForTwoMessage}
       </h2>
-      <p className=" text-gray-950 text-xl">{areaName}, {locality}, {city}</p>
+      <p className=" text-gray-950 text-xl">
+        {areaName}, {locality}, {city}
+      </p>
       {/* {categories accordians}  */}
       {categories.map((category) => (
         // controled component

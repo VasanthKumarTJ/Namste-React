@@ -12,6 +12,8 @@ import appStore from "./store/appStore";
 import Cart from "./components/Cart/Cart.js";
 import ShimmerUI from "./components/Shimmers/ShimmerUI.js";
 import Footer from "./components/Footer.js";
+import OrderPlaced from "./components/Cart/OrderPlaced.js";
+import Login from "./components/Login"
 
 const Help = lazy(() => import("./components/Help"));
 
@@ -21,7 +23,7 @@ const AppLayout = () => {
       <div className="app">
         <Header />
         <Outlet />
-        <Footer/>
+        {location.pathname !== "/login" && <Footer />}
       </div>
     </Provider>
   );
@@ -37,7 +39,7 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
-        path: "/about",
+        path: "/help",
         element: (
           <Suspense fallback={<ShimmerUI/>}>
             <Help />
@@ -55,6 +57,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/order",
+        element: <OrderPlaced/>,
+      },
+      {
+        path: "/login",
+        element: <Login/>,
       },
     ],
     errorElement: <Error />,

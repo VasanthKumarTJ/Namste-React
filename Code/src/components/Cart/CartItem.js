@@ -48,22 +48,27 @@ const CartItem = ({ items }) => {
             </div>
 
             <div className="flex my-1 self-center text-lg">
-              <h2 className=" mx-5">
+              <h2 className=" mx-5 px-2 py-1">
                 ₹
                 {item.card.info.price
                   ? item.card.info.price / 100
                   : item.card.info.defaultPrice / 100}
               </h2>
-              <button className=" flex justify-between ">
-                <div className=" mx-5" onClick={() => handleAddItem(item)}>
-                  +
-                </div>
-                <div>{item.quantity}</div>
+              <button className=" flex justify-between items-center bg-slate-200 rounded-lg px-2 py-1">
                 <div
-                  className="mx-5"
+                  className=" font-semibold text-red-400"
                   onClick={() => handleDecreaseItemQuantity(item)}
                 >
                   -
+                </div>
+                <div className="border-x-[1px] border-gray-500 mx-3 px-3">
+                  {item.quantity}
+                </div>
+                <div
+                  className=" text-green-600 font-semibold"
+                  onClick={() => handleAddItem(item)}
+                >
+                  +
                 </div>
               </button>
             </div>
