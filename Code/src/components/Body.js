@@ -22,6 +22,10 @@ const Body = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    fetchData();
+  }, [location.pathname]);
+
   const debouncedSearch = debounce((value) => {
     const filteredRestaurants = listOfRestaurants.filter((restaurant) => {
       return restaurant.info.name.toLowerCase().includes(value.toLowerCase());
