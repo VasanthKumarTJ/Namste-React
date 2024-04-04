@@ -41,7 +41,7 @@ const Header = () => {
           <li className={linkCss}>
             <div className="flex items-center">
               <FaHeadset className="mx-1" />
-              <Link to="/about">Help</Link>
+              <Link to="/help">Help</Link>
             </div>
           </li>
           <li className={linkCss}>
