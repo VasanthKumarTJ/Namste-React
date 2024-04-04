@@ -5,6 +5,8 @@ import {
   removeItem,
   decreaseItemQuantity,
 } from "../../store/cartSlice";
+import { MdDeleteForever } from "react-icons/md";
+
 
 const CartItem = ({ items }) => {
   const dispatch = useDispatch();
@@ -16,9 +18,9 @@ const CartItem = ({ items }) => {
   const handleDecreaseItemQuantity = (item) =>
     dispatch(decreaseItemQuantity(item.card.info.id));
 
-  // const handleRemoveItem = (item) => {
-  //   dispatch(removeItem(item));
-  // };
+  const handleRemoveItem = (item) => {
+    dispatch(removeItem(item.card.info.id));
+  };
 
   return (
     <div className=" px-3 w-10/12">
@@ -47,14 +49,14 @@ const CartItem = ({ items }) => {
               </p>
             </div>
 
-            <div className="flex my-1 self-center text-lg">
+            <div className="flex my-1 self-center text-lg  justify-around">
               <h2 className=" mx-5 px-2 py-1">
                 ₹
                 {item.card.info.price
                   ? item.card.info.price / 100
                   : item.card.info.defaultPrice / 100}
               </h2>
-              <button className=" flex justify-between items-center bg-slate-200 rounded-lg px-2 py-1">
+              <button className=" flex justify-between items-center bg-slate-200 rounded-lg px-2 py-1 mr-7">
                 <div
                   className=" font-semibold text-red-400"
                   onClick={() => handleDecreaseItemQuantity(item)}
@@ -70,8 +72,16 @@ const CartItem = ({ items }) => {
                 >
                   +
                 </div>
+              </button> 
+              <button
+                className="rounded-lg p-2 text-2xl  font-semibold"
+                onClick={() => handleRemoveItem(item)}
+              >
+                <MdDeleteForever/>
               </button>
+              
             </div>
+            
           </div>
         </div>
       ))}
