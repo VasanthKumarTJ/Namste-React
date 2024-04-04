@@ -15,7 +15,7 @@ import Footer from "./components/Footer.js";
 import OrderPlaced from "./components/Cart/OrderPlaced.js";
 import Login from "./components/Login"
 
-const Help = lazy(() => import("./components/Help"));
+const Help = lazy(() => import("./components/Help"));  
 
 const AppLayout = () => {
   return (
@@ -49,7 +49,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
-      },
+      }, 
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
@@ -73,4 +73,5 @@ const appRouter = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={appRouter} />);
+root.render(<RouterProvider router={appRouter} />); 
+
