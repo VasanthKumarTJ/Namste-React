@@ -1,0 +1,82 @@
+import React, { useEffect, useState } from "react";
+import { CDN_URL } from "../utils/constants.js";
+import { FaChevronDown } from "react-icons/fa";
+
+const OrderDetails = () => {
+  const [cartItems, setCartItems] = useState([]);
+  const [showItem, setShowItem] = useState(false);
+
+  const handleClick = () => {
+    setShowItem(!showItem);
+  };
+
+  useEffect(() => {
+    // Retrieve cart items from local storage
+    const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (storedCartItems) {
+      setCartItems(storedCartItems);
+    }
+  }, []);
+
+  return (
+    <div className="w-8/12 mx-auto my-10">
+      <h2 className=" text-2xl mb-5">Order Details:</h2>
+
+      <div onClick={handleClick}>
+        <div
+          className="flex justify-between cursor-pointer border-b-[1px] border-gray-300 pb-5 "
+          onClick={handleClick}
+        >
+          <span className="font-semibold text-lg  ">user ({cartItems.length})</span>
+          <span className=" mr-2"><FaChevronDown/></span>
+        </div>
+      </div>
+
+      {/* Accordian Body */}
+      {showItem && (
+        <div>
+          <ul>
+            {cartItems.map((item, index) => (
+              <div
+                className=" p-2 mt-2 border-b-[1px] border-gray-300 text-left flex align-middle "
+                key={item.card.info.id}
+              >
+                <img
+                  src={
+                    item.card.info.imageId
+                      ? CDN_URL + item.card.info.imageId
+                      : item.card.info.nextAvailableAtMessage
+                  }
+                  alt={item.card.info.name}
+                  className="rounded-lg  object-cover h-24 w-40"
+                />
+
+                <div className="w-8/12 self-center flex justify-between gap-5 ">
+                  <div className="px-2">
+                    <h1 className="font-medium mb-3 text-lg">
+                      {item.card.info.name}({item.quantity})
+                    </h1>
+                    <p className="text-xs text-gray-600 line-clamp-1 ">
+                      {item.card.info.description}
+                    </p>
+                  </div>
+
+                  <div className="flex my-1 self-center text-lg  justify-around">
+                    <h2 className=" mx-5 px-2 py-1">
+                      ₹
+                      {item.card.info.price
+                        ? item.card.info.price / 100
+                        : item.card.info.defaultPrice / 100}
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </ul>
+        </div>
+      )} 
+    </div>
+  );
+};
+
+export default OrderDetails;

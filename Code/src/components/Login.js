@@ -1,145 +1,40 @@
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { MdEmail,  } from "react-icons/md";
-// import { RiLockPasswordFill } from "react-icons/ri";
-// import { constant } from "lodash";
-
-
-// const Login = () => {
-//   const [username, setUsername] = React.useState("");
-//   const [password, setPassword] = React.useState("");
-//   const [action, setAction] = useState("Sign up")
-//   const navigate = useNavigate();
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (username && password) {
-//       // If both username and password are entered, navigate to the desired page (e.g., "/body").
-//       navigate("/body");
-//     } else {
-//       alert("Please enter a username and password");
-//     }
-//   };
-
-//   const handleLogin =() => {
-//     setAction("Login")
-//   }
-
-//   const handleSignUp =() => {
-//     setAction("Sign up")
-//   }
-
-//   return (
-//     <div className="flex flex-col items-center justify-center mt-8  bg-slate-300">
-//       <div className="flex flex-col items-center gap-2 my-8 ">
-//         <div className="text-2xl font-semibold">{action}</div>
-//         <div className=" w-11 h-1 bg-black"></div>
-//       </div>
-  
-//       <div className="flex flex-col gap-5 w-full max-w-md bg-pink-300 p-4 rounded-lg">
-//         <div>
-//           <input type="text" name="" id="" />
-//         </div>
-        
-//         <div className="flex items-center">
-//           <MdEmail />
-//           <input className="ml-2" placeholder="Enter Email" type="email" />
-//         </div>
-//         <div className="flex items-center">
-//            <RiLockPasswordFill/><input className="ml-2" placeholder="Enter password" type="password" />
-//         </div>
-//       </div>
-//       <div className="mt-4">
-//         <input onClick={handleLogin} className="px-4 py-2 mr-2 rounded bg-blue-500 text-white cursor-pointer" type="submit" value="Login" />
-//         <input onClick={handleSignUp} className="px-4 py-2 rounded bg-blue-500 text-white cursor-pointer" type="submit" value="Signup" />
-//       </div>
-//     </div>
-//   );
-  
-// };
-
-// export default Login;
-
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { MdEmail,  } from "react-icons/md";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { constant } from "lodash";
+import React from "react";
+import { FaUser } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
+import background from "../../assets/background.jpg"; // Import the background image
 
 const Login = () => {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [action, setAction] = useState("Sign up");
-  const [isSignUp, setIsSignUp] = useState(false);
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (username && password) {
-      // If both username and password are entered, navigate to the desired page (e.g., "/body").
-      if (isSignUp) {
-        // If the user has chosen to sign up, add the user to your authentication system here.
-        // Once the user has been added, navigate to the desired page (e.g., "/body").
-        navigate("/body");
-      } else {
-        // If the user has chosen to log in, authenticate the user here.
-        // Once the user has been authenticated, navigate to the desired page (e.g., "/body").
-        navigate("/body");
-      }
-    } else {
-      alert("Please enter a username and password");
-    }
-  };
-
-  const handleLogin =() => {
-    setAction("Login")
-    setIsSignUp(false)
-  }
-
-  const handleSignUp =() => {
-    setAction("Sign up")
-    setIsSignUp(true)
-  }
-
   return (
-    <div className="flex flex-col items-center justify-center mt-8  bg-slate-300">
-      <div className="flex flex-col items-center gap-2 my-8 ">
-        <div className="text-2xl font-semibold">{action}</div>
-        <div className=" w-11 h-1 bg-black"></div>
-      </div>
-  
-      <div className="flex flex-col gap-5 w-full max-w-md bg-pink-300 p-4 rounded-lg">
-        <div>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            type="text"
-            name=""
-            id=""
-          />
+    <div className="wrapper flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat object-contain" style={{ backgroundImage: `url(${background})` }}> {/* Apply background image using inline style */}
+      <form action="" className="w-[420px] bg-transparent border-2 border-black rounded-lg py-8 px-10 backdrop-blur-sm shadow-md text-black">
+        <h1 className="text-4xl text-center font-bold mb-8">Login</h1>
+        <div className="input-box relative w-full h-12 mx-0 my-8">
+          <input type="text" placeholder="username" id="" required className="placeholder-black rounded-full w-full h-full bg-transparent outline-0 border-2 border-solid border-black pl-4 pr-12e" />
+          <FaUser className="absolute right-6 top-2 translate-y-2" />
         </div>
-        
-        <div className="flex items-center">
-          <MdEmail />
-          <input
-            className="ml-2"
-            placeholder="Enter Email"
-            type="email"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+        <div className="input-box rounded-3xl relative w-full h-12 mx-0 my-8">
+          <input type="password" placeholder="password" id="" required className="placeholder-black rounded-full w-full h-full bg-transparent outline-0 border-2 border-solid border-black pl-4 pr-12 " />
+          <FaLock className="absolute right-6 top-2 translate-y-2" />
         </div>
-        <div className="flex items-center">
-           <RiLockPasswordFill/><input className="ml-2" placeholder="Enter password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}  />
+
+        <div className="remember-forget flex justify-between text-base mx-0 mt-[-15px] mb-3">
+          <label>
+            <input type="checkbox" className="mr-1" />
+            Remember me
+          </label>
+          <a href="#">Forgot password?</a>
         </div>
-      </div>
-      <div className="mt-4">
-        <input onClick={handleSubmit} className="px-4 py-2 mr-2 rounded bg-blue-500 text-white cursor-pointer" type="submit" value="Login" />
-        <input onClick={handleSignUp} className="px-4 py-2 rounded bg-blue-500 text-white cursor-pointer" type="submit" value="Signup" />
-      </div>
+
+        <button type="submit" className="bg-black text-white border-0 cursor-pointer shadow-md text-base font-bold w-full h-11 rounded-full">login</button>
+
+        <div className="register-link text-base text-center mt-6 mx-0 my-4">
+          <p>
+            Don't have an account?<a href="#" className="font-bold hover:underline"> Register</a>
+          </p>
+        </div>
+      </form>
     </div>
   );
-  
 };
 
 export default Login;

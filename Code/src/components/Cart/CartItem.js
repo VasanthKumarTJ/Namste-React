@@ -90,17 +90,3 @@ const CartItem = ({ items }) => {
 };
 
 export default CartItem;
-
-{
-  /* <div className="w-3/12 p-4 mx-auto relative">
-           <div className=" flex gap-3 top-20 drop-shadow-lg">
-
-              <button
-                className=" bg-white text-red-600 rounded-lg  m-auto p-2 text-xs font-semibold"
-                onClick={() => handleRemoveItem(item)}
-              >
-                Remove
-              </button>
-            </div>
-          </div> */
-}

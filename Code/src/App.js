@@ -2,10 +2,14 @@ import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import Contact from "./components/Contact";
-// import About from "./components/About";
+import About from "./components/About";
 import Error from "./components/Error";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  useLocation,
+} from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
@@ -13,17 +17,33 @@ import Cart from "./components/Cart/Cart.js";
 import ShimmerUI from "./components/Shimmers/ShimmerUI.js";
 import Footer from "./components/Footer.js";
 import OrderPlaced from "./components/Cart/OrderPlaced.js";
-import Login from "./components/Login"
+import Login from "./components/Login.js";
+import OrderDetails from "./components/OrderDetails.js";
 
-const Help = lazy(() => import("./components/Help"));  
+const Help = lazy(() => import("./components/Help"));
 
-const AppLayout = () => {
+// const AppLayout = () => {
+//   return (
+//     <Provider store={appStore}>
+//       <div className="app">
+//         <Header />
+//         <Outlet />
+//         <Footer />
+//       </div>
+//     </Provider>
+//   );
+// };
+
+const AppLayoutWithFooter = () => {
+  const location = useLocation();
+
   return (
     <Provider store={appStore}>
       <div className="app">
-        <Header />
+        {location.pathname !== "/login" && <Header />}
         <Outlet />
-        {location.pathname !== "/login" && <Footer />}
+        {location.pathname !== "/login" &&
+          location.pathname !== "/orderdetails" && <Footer />}
       </div>
     </Provider>
   );
@@ -32,7 +52,7 @@ const AppLayout = () => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: <AppLayoutWithFooter />,
     children: [
       {
         path: "/",
@@ -41,15 +61,15 @@ const appRouter = createBrowserRouter([
       {
         path: "/help",
         element: (
-          <Suspense fallback={<ShimmerUI/>}>
+          <Suspense fallback={<ShimmerUI />}>
             <Help />
           </Suspense>
         ),
       },
       {
-        path: "/contact",
-        element: <Contact />,
-      }, 
+        path: "/about",
+        element: <About />,
+      },
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
@@ -60,11 +80,15 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/order",
-        element: <OrderPlaced/>,
+        element: <OrderPlaced />,
       },
       {
         path: "/login",
-        element: <Login/>,
+        element: <Login />,
+      },
+      {
+        path: "/orderdetails",
+        element: <OrderDetails />,
       },
     ],
     errorElement: <Error />,
@@ -73,5 +97,4 @@ const appRouter = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={appRouter} />); 
-
+root.render(<RouterProvider router={appRouter} />);

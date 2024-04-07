@@ -1,18 +1,18 @@
-import { useState } from "react";
-import logo from "../../assets/logo/logo.png";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
 import { useSelector } from "react-redux";
+import { FaHeadset, FaShoppingCart } from "react-icons/fa";
+import logo from "../../assets/logo/logo.png";
+import useOnlineStatus from "../utils/useOnlineStatus";
 import { selectCartQuantity } from "../store/selectCartQuantity";
-import { FaHeadset, FaShoppingCart, } from "react-icons/fa";
+import { MdOutlineHistory } from "react-icons/md";
 
 const Header = () => {
-  const [loginBtn, setLoginBtn] = useState("Login");
+  const [loginBtn, setLoginBtn] = useState("Login"); // State to control dropdown visibility
   const onlineStatus = useOnlineStatus();
-
   const totalQuantity = useSelector(selectCartQuantity);
 
-  //subscribing t0 store using a selector
+  // Subscribing to store using a selector
   const cartItems = useSelector((store) => store.cart.items.quantity);
   console.log(cartItems);
 
@@ -20,17 +20,18 @@ const Header = () => {
     "pr-12 lg:pr-6 lg:text-sm xl:pr-12 xl:text-base font-bold  text-gray-600 hover:text-orange-300";
 
   return (
-    <div className="flex  justify-between h-20 shadow-lg">
+    <div className="flex  justify-between h-24 shadow-lg">
       <div className="logo-container">
         <Link to="/">
           <img
-            className="h-20 w-28 cursor-pointer object-cover"
+            className=" h-24 w-28 cursor-pointer object-cover"
             src={logo}
-          ></img>
+            alt="Logo"
+          />
         </Link>
       </div>
 
-      <div className=" flex items-center">
+      <div className=" flex items-center relative">
         <ul className=" flex m-4 p-4 ">
           <li className="pr-12 lg:pr-6 lg:text-sm xl:pr-12 xl:text-base font-bold">
             online Status: {onlineStatus ? "✅" : "🔴"}
@@ -45,17 +46,18 @@ const Header = () => {
             </div>
           </li>
           <li className={linkCss}>
-            <Link to="/contact">contact</Link>
+            <Link to="/about">About</Link>
           </li>
           <li className={linkCss}>
             <div className="flex items-center">
+            <MdOutlineHistory className="mx-1" /> 
+            <Link to="/orderdetails">last order</Link>
+            </div>
+          </li>
+          <li className={linkCss}>
+            <div className="flex items-center relative">
               <FaShoppingCart className="mx-1" />
-              <Link
-                to="/cart 
-            "
-              >
-                Cart ({totalQuantity} items)
-              </Link>
+              <Link to="/cart">Cart ({totalQuantity} items)</Link>
             </div>
           </li>
           <button

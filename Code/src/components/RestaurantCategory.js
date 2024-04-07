@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
+import { FaChevronDown } from "react-icons/fa";
 
 
 const RestaurantCategory = ({ data }) => {
@@ -19,7 +20,7 @@ const RestaurantCategory = ({ data }) => {
           <span className="font-semibold text-lg  ">
             {data.title} ({data.itemCards.length})
           </span>
-          <span>⬇</span>
+          <span><FaChevronDown/></span>
         </div>
 
         {/* Accordian Body */}
