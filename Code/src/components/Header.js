@@ -50,8 +50,8 @@ const Header = () => {
           </li>
           <li className={linkCss}>
             <div className="flex items-center">
-            <MdOutlineHistory className="mx-1" /> 
-            <Link to="/orderdetails">last order</Link>
+              <MdOutlineHistory className="mx-1" />
+              <Link to="/orderdetails">last order</Link>
             </div>
           </li>
           <li className={linkCss}>
@@ -68,7 +68,7 @@ const Header = () => {
                 : setLoginBtn("Login");
             }}
           >
-            {loginBtn}
+            <Link to="/login">{loginBtn}</Link>
           </button>
         </ul>
       </div>

@@ -24,7 +24,7 @@ const OrderDetails = () => {
 
       <div onClick={handleClick}>
         <div
-          className="flex justify-between cursor-pointer border-b-[1px] border-gray-300 pb-5 items-center"
+          className="flex justify-between cursor-pointer border-b-[1px] border-gray-300 pb-5 items-center align-middle"
           onClick={handleClick}
         >
           <span className="font-semibold text-lg  ">user ({cartItems.length})</span>
