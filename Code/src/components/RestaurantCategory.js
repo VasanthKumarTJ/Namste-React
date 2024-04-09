@@ -16,8 +16,8 @@ const RestaurantCategory = ({ data }) => {
       <div
         className="w-6/12 mx-auto my-4 bg-gray-50 shadow-lg p-4 cursor-pointer text-gray-800"
       >
-        <div className="flex justify-between cursor-pointer"  onClick={handleClick}>
-          <span className="font-semibold text-lg  ">
+        <div className="flex justify-between cursor-pointer items-center"  onClick={handleClick}>
+          <span className="font-semibold text-lg"> 
             {data.title} ({data.itemCards.length})
           </span>
           <span><FaChevronDown/></span>

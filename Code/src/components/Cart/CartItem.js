@@ -23,7 +23,7 @@ const CartItem = ({ items }) => {
   };
 
   return (
-    <div className=" px-3 w-10/12">
+    <div className=" px-3 w-full">
       {items.map((item) => (
         <div
           className=" p-2 mt-2 border-b-[1px] border-gray-300 text-left flex align-middle "

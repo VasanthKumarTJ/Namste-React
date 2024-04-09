@@ -37,9 +37,9 @@ const Cart = () => {
     </div>
   ) : (
     // <div className=" flex justify-between w-10/12 mx-auto my-10">
-      <div className=" text-center flex w-10/12 mx-auto my-10 gap-8">
+      <div className=" text-center flex w-10/12 mx-auto my-10 gap-8"> 
         <div className=" w-9/12">
-          <div className="text-start flex justify-between border-b-[1px] border-gray-300 w-10/12 ">
+          <div className="text-start flex justify-between border-b-[1px] border-gray-300 w-full ">
             <div>
               <h1 className="text-2xl font-semibold">Order Overview</h1>
               <h2 className=" text-xl">
@@ -65,7 +65,7 @@ const Cart = () => {
           <CartItem items={cartItems} />
         </div>
 
-        <CartSummary items={cartItems} />
+        <CartSummary items={cartItems}/>
       </div>
     // </div>
   );

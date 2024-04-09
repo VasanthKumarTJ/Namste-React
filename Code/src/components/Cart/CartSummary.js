@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 const CartSummary = () => {
   const navigate = useNavigate();
@@ -49,9 +49,11 @@ const CartSummary = () => {
     // };
 
     // Save order details to local storage
-    localStorage.setItem('cartItems', JSON.stringify(items));
+    localStorage.setItem("cartItems", JSON.stringify(items));
 
     // Navigate to the OrderDetails component
+    dispatch(clearCart());
+
     navigate("/order");
   };
 
