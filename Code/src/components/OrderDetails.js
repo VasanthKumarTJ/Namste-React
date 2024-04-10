@@ -41,7 +41,7 @@ const OrderDetails = () => {
           className="bg-blue-800 hover:bg-blue-500 active:bg-blue-950 text-white p-2 m-7 text-sm font-bold rounded-md"
           onClick={clearLocalStorage}
         >
-          Clear history
+          Clear history 
         </button>
         <button className="bg-blue-800 hover:bg-blue-500 active:bg-blue-950 text-white p-2 m-7 text-sm font-bold rounded-md">
           <Link to="/home"> Go back to Restaurants </Link>

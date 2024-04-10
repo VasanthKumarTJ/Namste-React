@@ -11,7 +11,7 @@ const Login = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    if (username === "vicky" && password === "0108") {
+    if (username === "haritha" && password === "0108") {
       // Save username to local storage
       localStorage.setItem("username", username);
       navigate("/home");
@@ -53,17 +53,16 @@ const Login = () => {
           <FaLock className="absolute right-6 top-2 translate-y-2" />
         </div>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+        <p type="button" className=" text-center mt-6 mx-0 my-4 font-mono font-semibold text-2xl">
+          Feast on Innovation with TechCuisine!
+        </p>
         <button
           type="submit"
           className="bg-black text-white border-0 cursor-pointer shadow-md text-base font-bold w-full h-11 rounded-full"
         >
           login
         </button>
-        <div className="register-link text-base text-center mt-6 mx-0 my-4">
-          <p>
-            Don't have an account?<a href="#" className="font-bold hover:underline"> Register</a>
-          </p>
-        </div>
+       
       </form>
     </div>
   );
