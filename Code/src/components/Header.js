@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <div className="flex  justify-between h-24 shadow-lg">
       <div className="logo-container">
-        <Link to="/">
+        <Link to="/home">
           <img
             className=" h-24 w-28 cursor-pointer object-cover"
             src={logo}
@@ -37,7 +37,7 @@ const Header = () => {
             online Status: {onlineStatus ? "✅" : "🔴"}
           </li>
           <li className={linkCss}>
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li className={linkCss}>
             <div className="flex items-center">
@@ -60,7 +60,7 @@ const Header = () => {
               <Link to="/cart">Cart ({totalQuantity} items)</Link>
             </div>
           </li>
-          <button
+          {/* <button
             className="Login"
             onClick={() => {
               loginBtn === "Login"
@@ -68,8 +68,8 @@ const Header = () => {
                 : setLoginBtn("Login");
             }}
           >
-            <Link to="/login">{loginBtn}</Link>
-          </button>
+            <Link to="/">{loginBtn}</Link> 
+          </button> */}
         </ul>
       </div>
     </div>

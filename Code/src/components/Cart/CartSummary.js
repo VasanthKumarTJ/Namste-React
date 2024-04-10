@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
 const CartSummary = () => {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,23 +40,22 @@ const CartSummary = () => {
   }, [items]);
 
   const handleCheckout = () => {
-    // Serialize order details
-    // const orderDetails = {
-    //   items: items,
-    //   totalPrice: totalPrice,
-    //   tax: tax,
-    //   deliveryCharge: deliveryCharge,
-    //   orderTotal: orderTotal,
-    // };
-
-    // Save order details to local storage
-    localStorage.setItem("cartItems", JSON.stringify(items));
-
+    // Retrieve existing cart items from local storage
+    const existingCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  
+    // Merge existing cart items with new items
+    const updatedCartItems = [...existingCartItems, ...items];
+  
+    // Serialize and save updated cart items to local storage
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+  
     // Navigate to the OrderDetails component
     dispatch(clearCart());
-
     navigate("/order");
   };
+  
+
+
 
   return (
     <div className="w-4/12 border-[1px] border-gray-300 p-3">

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -34,20 +34,24 @@ const Help = lazy(() => import("./components/Help"));
 //   );
 // };
 
+
 const AppLayoutWithFooter = () => {
+
   const location = useLocation();
 
   return (
     <Provider store={appStore}>
       <div className="app">
-        {location.pathname !== "/login" && <Header />}
-        <Outlet />
-        {location.pathname !== "/login" &&
-          location.pathname !== "/orderdetails" && <Footer />}
-      </div>
+        {location.pathname !== "/" && <Header />}
+        <Outlet/> {/* Pass username as prop */}
+        {location.pathname !== "/" && location.pathname !== "/orderdetails" && (
+          <Footer />
+        )}
+      </div> 
     </Provider>
   );
 };
+
 
 const appRouter = createBrowserRouter([
   {
@@ -56,6 +60,10 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Login />,
+      },
+      {
+        path: "/home",
         element: <Body />,
       },
       {
@@ -82,10 +90,7 @@ const appRouter = createBrowserRouter([
         path: "/order",
         element: <OrderPlaced />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
+
       {
         path: "/orderdetails",
         element: <OrderDetails />,
