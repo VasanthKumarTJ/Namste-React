@@ -28,7 +28,7 @@ const Cart = () => {
         </span>
       </div>
       <div className="pt-4">
-        <Link to="/">
+        <Link to="/home">
           <span className="bg-orange-400 py-2 px-3 text-base font-bold text-white hover:bg-transparent hover:rounded-md   hover:border-2 hover:border-black hover:text-black">
             SEE RESTAURANTS NEAR YOU
           </span>

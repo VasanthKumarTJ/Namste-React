@@ -39,7 +39,22 @@ const CartSummary = () => {
     setOrderTotal(newOrderTotal);
   }, [items]);
 
+ 
+    
+
+
   const handleCheckout = () => {
+
+    // Check if user is logged in
+    const isLoggedIn = localStorage.getItem("username");
+
+    if (!isLoggedIn) {
+      // User is not logged in, redirect to login page
+      navigate("/"); // Redirect to login page
+      alert("You must login first to proceed with the checkout."); // Display alert message
+      return;
+    }
+
     // Retrieve existing cart items from local storage
     const existingCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   

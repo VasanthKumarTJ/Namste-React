@@ -28,9 +28,14 @@ const OrderDetails = () => {
     }
   }, []);
 
-  const clearLocalStorage = () => { 
-    localStorage.clear();
-    setCartItems([]); 
+  const clearLocalStorage = () => {
+    const orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
+    orderHistory.push(cartItems);
+    localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
+    localStorage.removeItem("username");
+
+    localStorage.removeItem("cartItems");
+    setCartItems([]);
   };
  
   return (
@@ -86,7 +91,7 @@ const OrderDetails = () => {
                   <div className="w-8/12 self-center flex justify-between gap-5 ">
                     <div className="px-2">
                       <h1 className="font-medium mb-3 text-lg">
-                        {item.card.info.name}({item.quantity})
+                        {item.card.info.name} - qty:({item.quantity})
                       </h1>
                       <p className="text-xs text-gray-600 line-clamp-1 ">
                         {item.card.info.description}
