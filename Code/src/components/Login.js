@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import background from "../../assets/background.jpg";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,9 +12,9 @@ const Login = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    if (username === "haritha" && password === "0108") {
-      // Save username to local storage
-      localStorage.setItem("username", username);
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
+    if (username === storedUsername && password === storedPassword) {
       navigate("/home");
     } else {
       setError("Invalid username or password");
@@ -41,7 +42,7 @@ const Login = () => {
           />
           <FaUser className="absolute right-6 top-2 translate-y-2" />
         </div>
-        <div className="input-box rounded-3xl relative w-full h-12 mx-0 my-8">
+        <div className="input-box rounded-3xl relative w-full h-12 mx-0 my-4">
           <input
             type="password"
             placeholder="password"
@@ -53,7 +54,10 @@ const Login = () => {
           <FaLock className="absolute right-6 top-2 translate-y-2" />
         </div>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-        <p type="button" className=" text-center mt-6 mx-0 my-4 font-mono font-semibold text-2xl">
+        <p
+          type="button"
+          className=" text-center mx-0 font-mono font-semibold text-lg"
+        >
           Feast on Innovation with TechCuisine!
         </p>
         <button
@@ -61,8 +65,13 @@ const Login = () => {
           className="bg-black text-white border-0 cursor-pointer shadow-md text-base font-bold w-full h-11 rounded-full"
         >
           login
-        </button>
-       
+        </button> 
+        <div className="flex items-center mt-5 justify-center">
+          <p className="mr-1"> Don't have an account? </p>
+          <Link to="/signup">
+            <span className=" hover:underline"> Register</span>
+          </Link>
+        </div>
       </form>
     </div>
   );

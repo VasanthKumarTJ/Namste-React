@@ -19,6 +19,7 @@ import Footer from "./components/Footer.js";
 import OrderPlaced from "./components/Cart/OrderPlaced.js";
 import Login from "./components/Login.js";
 import OrderDetails from "./components/OrderDetails.js";
+import Signup from "./components/Signup.js";
 
 const Help = lazy(() => import("./components/Help"));
 
@@ -42,9 +43,9 @@ const AppLayoutWithFooter = () => {
   return (
     <Provider store={appStore}>
       <div className="app">
-        {location.pathname !== "/" && <Header />}
+        {location.pathname !== "/" &&  location.pathname !== "/signup" && <Header />}
         <Outlet/> {/* Pass username as prop */}
-        {location.pathname !== "/" && location.pathname !== "/orderdetails" && (
+        {location.pathname !== "/" && location.pathname !== "/orderdetails" && location.pathname !== "/signup" && (
           <Footer />
         )}
       </div> 
@@ -61,6 +62,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup></Signup>,
       },
       {
         path: "/home",
