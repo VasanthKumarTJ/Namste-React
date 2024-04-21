@@ -4,7 +4,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
  
 
-const OrderDetails = () => {
+const orderHistory = () => {
   const [cartItems, setCartItems] = useState([]);
   const [showItem, setShowItem] = useState(false);
   const [username, setUsername] = useState("");
@@ -53,7 +53,7 @@ const OrderDetails = () => {
         </button>
       </div>
       <div className="w-8/12 mx-auto my-2">
-        <h2 className=" text-2xl mb-5">Order Details:</h2>
+        <h2 className=" text-2xl mb-5">Order history:</h2>
 
         <div onClick={handleClick}>
           <div
@@ -117,4 +117,4 @@ const OrderDetails = () => {
   );
 };
 
-export default OrderDetails;
+export default orderHistory;

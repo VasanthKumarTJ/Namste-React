@@ -51,7 +51,7 @@ const Header = () => {
           <li className={linkCss}>
             <div className="flex items-center">
               <MdOutlineHistory className="mx-1" />
-              <Link to="/orderdetails">last order</Link>
+              <Link to="/orderhistory">Order history</Link>
             </div>
           </li>
           <li className={linkCss}>

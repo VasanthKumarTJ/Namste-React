@@ -18,10 +18,10 @@ import ShimmerUI from "./components/Shimmers/ShimmerUI.js";
 import Footer from "./components/Footer.js";
 import OrderPlaced from "./components/Cart/OrderPlaced.js";
 import Login from "./components/Login.js";
-import OrderDetails from "./components/OrderDetails.js";
+import OrderHistory from "./components/OrderHistory.js";
 import Signup from "./components/Signup.js";
 
-const Help = lazy(() => import("./components/Help"));
+const Help = lazy(() => import("./components/Help")); 
 
 // const AppLayout = () => {
 //   return (
@@ -97,8 +97,8 @@ const appRouter = createBrowserRouter([
       },
 
       {
-        path: "/orderdetails",
-        element: <OrderDetails />,
+        path: "/orderhistory",
+        element: <OrderHistory />,
       },
     ],
     errorElement: <Error />,
