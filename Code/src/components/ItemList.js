@@ -1,16 +1,27 @@
 import { CDN_URL } from "../utils/constants";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
 import { addItem } from "../store/cartSlice";
+import { useState } from "react";
 
 const ItemList = ({ items }) => {
   // console.log(items);
-  
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
+  const [addedItems, setAddedItems] = useState({});
 
   const handleAddItem = (item) => {
-    dispatch(addItem(item))
-    
-  }
+    dispatch(addItem(item));
+    setAddedItems((prevAddedItems) => ({
+      ...prevAddedItems,
+      [item.card.info.id]: true,
+    }));
+    setTimeout(() => {
+      setAddedItems((prevAddedItems) => ({
+        ...prevAddedItems,
+        [item.card.info.id]: false,
+      }));
+    }, 1000);
+  };
 
   return (
     <div>
@@ -30,20 +41,32 @@ const ItemList = ({ items }) => {
               </h2>
             </div>
 
-            <p className="text-xs text-gray-600 ">{item.card.info.description}</p>
+            <p className="text-xs text-gray-600 ">
+              {item.card.info.description}
+            </p>
           </div>
           <div className="w-3/12 p-4 mx-auto relative">
             {!item.card.info.nextAvailableAtMessage && (
               <div className=" absolute mx-8 top-20 drop-shadow-lg">
-                <button className=" bg-white text-green-600 rounded-lg  m-auto p-2 text-xs font-semibold"
-                onClick={() => handleAddItem(item)}>
-                 ADD + <span>{item.quantity}</span> 
+                <button
+                  className={` rounded-lg m-auto p-2 text-xs font-semibold ${
+                    addedItems[item.card.info.id]
+                      ? "bg-green-600 text-white"
+                      : "bg-white text-green-600"
+                  }`}
+                  onClick={() => handleAddItem(item)}
+                >
+                  {
+                    addedItems[item.card.info.id] ? "ADDED" : "ADD +" } <span>{item.quantity}</span>
                 </button>
               </div>
             )}
             <img
-              src={item.card.info.nextAvailableAtMessage ? item.card.info.nextAvailableAtMessage : CDN_URL + item.card.info.imageId }
-            
+              src={
+                item.card.info.nextAvailableAtMessage
+                  ? item.card.info.nextAvailableAtMessage
+                  : CDN_URL + item.card.info.imageId
+              }
               alt={item.card.info.nextAvailableAtMessage}
               className=" w-full rounded-lg h-20 object-cover"
             />
